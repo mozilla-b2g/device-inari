@@ -1,0 +1,1 @@
+../../qcom/otoro/BoardConfig.mk

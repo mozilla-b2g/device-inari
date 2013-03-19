@@ -1,0 +1,1 @@
+../../qcom/otoro/AndroidBoard.mk

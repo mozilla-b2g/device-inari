@@ -181,7 +181,6 @@ COMMON_LIBS="
 	libril-qc-1.so
 	libril-qc-qmi-1.so
 	libril-qcril-hook-oem.so
-	libril.so
 	librpc.so
 	libsc-a2xx.so
 	libwms.so

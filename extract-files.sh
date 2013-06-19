@@ -181,6 +181,7 @@ COMMON_LIBS="
 	libril-qc-1.so
 	libril-qc-qmi-1.so
 	libril-qcril-hook-oem.so
+	libril.so
 	librpc.so
 	libsc-a2xx.so
 	libwms.so
@@ -201,6 +202,7 @@ COMMON_BINS="
 	qmiproxy
 	qmuxd
 	radish
+	rild
 	"
 
 copy_files "$COMMON_BINS" "system/bin" ""

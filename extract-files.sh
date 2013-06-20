@@ -202,6 +202,7 @@ COMMON_BINS="
 	qmiproxy
 	qmuxd
 	radish
+	rild
 	"
 
 copy_files "$COMMON_BINS" "system/bin" ""

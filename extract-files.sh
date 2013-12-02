@@ -232,7 +232,7 @@ COMMON_ATH6K="
 	"
 copy_files "$COMMON_ATH6K" "system/etc/firmware/ath6k/AR6003/hw2.1.1" "wifi"
 
-COMMON_ETC="init.qcom.bt.sh gps.conf"
+COMMON_ETC="init.qcom.bt.sh gps.conf AudioFilter.csv"
 copy_files "$COMMON_ETC" "system/etc" "etc"
 
 COMMON_EGL="

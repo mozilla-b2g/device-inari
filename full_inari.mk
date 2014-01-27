@@ -5,7 +5,7 @@ PRODUCT_COPY_FILES := \
   device/qcom/inari/touchscreen.idc:system/usr/idc/cyttsp-i2c.idc \
   device/qcom/inari/touchscreen.idc:system/usr/idc/melf-touchscreen.idc \
   device/qcom/inari/audio.conf:system/etc/bluetooth/audio.conf \
-  device/qcom/otoro/media_profiles.xml:system/etc/media_profiles.xml \
+  device/qcom/inari/media_profiles.xml:system/etc/media_profiles.xml \
   device/qcom/msm7627a/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 $(call inherit-product-if-exists, vendor/qcom/inari/inari-vendor-blobs.mk)

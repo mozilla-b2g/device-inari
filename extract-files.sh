@@ -198,6 +198,7 @@ COMMON_BINS="
 	fmconfig
 	hci_qcomm_init
 	netmgrd
+	proximity.init
 	port-bridge
 	qmiproxy
 	qmuxd

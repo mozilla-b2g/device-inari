@@ -1,1 +1,1 @@
-../../qcom/otoro/AndroidBoard.mk
+include device/qcom/msm7627a/AndroidBoard.mk

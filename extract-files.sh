@@ -44,10 +44,26 @@ case "$DEVICE_BUILD_ID" in
 esac
 
 BASE_PROPRIETARY_COMMON_DIR=vendor/$MANUFACTURER/$COMMON/proprietary
-PROPRIETARY_DEVICE_DIR=../../../vendor/$MANUFACTURER/$DEVICE/proprietary
+PROPRIETARY_DEVICE_DIR=../../../vendor/$MANUFACTURER/$DEVICE/
 PROPRIETARY_COMMON_DIR=../../../$BASE_PROPRIETARY_COMMON_DIR
 
 mkdir -p $PROPRIETARY_DEVICE_DIR
+
+# Pick kernel + ramdisk blobs from the phone [ needs adb root & abootimg ]:
+if [[ ! -f ../../../backup-${DEVICE}/boot.img ]]; then
+
+    echo Pulling boot.img from your phone to backup-${DEVICE}/boot.img
+    adb shell "cat /dev/mtd/mtd1 > /data/local/tmp/boot.img"
+    adb pull /data/local/tmp/boot.img ../../../backup-${DEVICE}/boot.img
+
+    echo "Unpacking boot.img & cleaning misc files:"
+    (cd ../../../backup-${DEVICE}/ && abootimg -x boot.img && rm -rf boot.img bootimg.cfg)
+    echo "Extracting ramdisk from initrd.img:"
+    RAMDISK="../../../device/${MANUFACTURER}/${DEVICE}/ramdisk"
+    mkdir -p $RAMDISK
+    (cd $RAMDISK && gunzip -dc ../../../../backup-${DEVICE}/initrd.img | cpio -i)
+fi
+
 
 for NAME in audio hw wifi etc egl etc/firmware
 do
@@ -199,6 +215,7 @@ COMMON_BINS="
 	hci_qcomm_init
 	netmgrd
 	port-bridge
+        proximity.init
 	qmiproxy
 	qmuxd
 	radish
@@ -251,15 +268,3 @@ COMMON_FIRMWARE="
 	yamato_pm4.fw
 	"
 copy_files "$COMMON_FIRMWARE" "system/etc/firmware" "etc/firmware"
-
-BOOTIMG=boot-inari.img
-if [ -f ../../../${BOOTIMG} ]; then
-    (cd ../../.. && ./build.sh unbootimg)
-    . ../../../build/envsetup.sh
-    HOST_OUT=$(get_build_var HOST_OUT_$(get_build_var HOST_BUILD_TYPE))
-    KERNEL_DIR=../../../vendor/${MANUFACTURER}/${DEVICE}
-    cp ../../../${BOOTIMG} ${KERNEL_DIR}
-    ../../../${HOST_OUT}/bin/unbootimg ${KERNEL_DIR}/${BOOTIMG}
-    mv ${KERNEL_DIR}/${BOOTIMG}-kernel ${KERNEL_DIR}/kernel
-    rm -f ${KERNEL_DIR}/${BOOTIMG}-ramdisk.cpio.gz ${KERNEL_DIR}/${BOOTIMG}-second ${KERNEL_DIR}/${BOOTIMG}-mk ${KERNEL_DIR}/${BOOTIMG}
-fi

@@ -215,6 +215,7 @@ COMMON_BINS="
 	hci_qcomm_init
 	netmgrd
 	port-bridge
+        proximity.init
 	qmiproxy
 	qmuxd
 	radish

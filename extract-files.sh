@@ -137,11 +137,23 @@ copy_local_files()
 
 COMMON_LIBS="
 	libOmxAacDec.so
+	libOmxAdpcmDec.so
+	libOmxAmrDec.so
+	libOmxAmrRtpDec.so
+	libOmxAmrwbDec.so
+	libOmxEvrcDec.so
+	libOmxEvrcHwDec.so
 	libOmxH264Dec.so
 	libOmxMp3Dec.so
 	libOmxMpeg4Dec.so
+	libOmxOn2Dec.so
+	libOmxQcelp13Dec.so
+	libOmxQcelpHwDec.so
+	libOmxrv9Dec.so
 	libOmxVidEnc.so
 	libOmxVp8Dec.so
+	libOmxWmaDec.so
+	libOmxWmvDec.so
 	libOpenVG.so
 	libSimCardAuth.so
 	libauth.so
@@ -168,6 +180,8 @@ COMMON_LIBS="
 	libmmgsdilib.so
 	libmmipl.so
 	libmmjpeg.so
+	libmmosal.so
+	libmmparser.so
 	libnetmgr.so
 	libnv.so
 	liboemcamera.so
@@ -197,6 +211,7 @@ COMMON_BINS="
 	fm_qsoc_patches
 	fmconfig
 	hci_qcomm_init
+	mm-qcamera-daemon
 	netmgrd
 	port-bridge
 	qmiproxy
